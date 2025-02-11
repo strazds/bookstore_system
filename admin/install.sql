@@ -44,7 +44,7 @@ CREATE TABLE customer (
 -- Create the Order table
 CREATE TABLE [order] (
     orderid INT PRIMARY KEY IDENTITY(1,1),
-    orderdate DATETIME,
+    orderdate DATETIME2,
     shippingaddress VARCHAR(255),
     customerid INT NOT NULL,
     FOREIGN KEY (customerid) REFERENCES customer(customerid)
