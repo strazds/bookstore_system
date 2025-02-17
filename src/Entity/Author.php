@@ -1,31 +1,48 @@
 <?php
 
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
- * @ORM\Table(name="author")
- */
+#[ORM\Entity]
+#[ORM\Table(name: "author")]
 class Author
 {
-    /**
-     * @ORM\authorid
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\Column(type: "integer")]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
+    private $authorid;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string", length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: "date", nullable: true)]
     private $birthdate;
 
-    // ... Getter und Setter für $id, $name und $description
+    // Getters and setters
+    public function getAuthorId(): ?int
+    {
+        return $this->authorid;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+        return $this;
+    }
 }
